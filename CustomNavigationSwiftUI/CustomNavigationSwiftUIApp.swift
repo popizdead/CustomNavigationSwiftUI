@@ -11,7 +11,9 @@ import SwiftUI
 struct CustomNavigationSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavControllerView() {
+                FirstScreen()
+            }
         }
     }
 }
