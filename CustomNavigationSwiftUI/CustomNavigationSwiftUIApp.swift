@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct CustomNavigationSwiftUIApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            NavControllerView(transition: .custom(.present)) {
-                FirstScreen()
-            }
+            TabControllerView()
+                .environmentObject(TabRouter())
         }
     }
 }
