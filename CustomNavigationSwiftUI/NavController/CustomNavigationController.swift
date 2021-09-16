@@ -11,12 +11,19 @@ import SwiftUI
 public struct NavControllerView<Content>: View where Content: View {
     
     @ObservedObject private var viewModel: NavControllerViewModel
+    private var transition: (push: AnyTransition, pop: AnyTransition)
     private let content: Content
     
-    public init(@ViewBuilder content: @escaping () -> Content) {
-        
-        viewModel = NavControllerViewModel()
+    public init(transition: NavTransition, easing: Animation = .easeOut(duration: 0.33), @ViewBuilder content: @escaping () -> Content) {
+        viewModel = NavControllerViewModel(easing: easing)
         self.content = content()
+        
+        switch transition {
+        case .custom(let trans):
+            self.transition = (trans, trans)
+        case .none:
+            self.transition = (.identity, .identity)
+        }
     }
     
     public var body: some View {
@@ -26,10 +33,12 @@ public struct NavControllerView<Content>: View where Content: View {
             if isRoot {
                 content
                     .environmentObject(viewModel)
+                    .transition(viewModel.navigationType == .push ? transition.push : transition.pop)
             } else {
                 if let currentScreen = viewModel.currentScreen {
                     currentScreen.nextScreen
                         .environmentObject(viewModel)
+                        .transition(viewModel.navigationType == .push ? transition.push : transition.pop)
                 }
             }
         }
@@ -82,27 +91,38 @@ public struct PopButton<Label>: View where Label: View {
 final class NavControllerViewModel: ObservableObject {
     @Published var currentScreen: Screen?
     
+    private let easing: Animation
+    var navigationType = NavType.push
+    
     private var screenStack = ScreenStack() {
         didSet {
             currentScreen = screenStack.top()
         }
     }
     
-    init() {
-        
+    init(easing: Animation) {
+        self.easing = easing
     }
     
     func push<S: View>(_ screenView: S) {
-        let screen = Screen(id: UUID().uuidString, nextScreen: AnyView(screenView))
-        screenStack.push(screen)
+        navigationType = .push
+        
+        withAnimation(easing) {
+            let screen = Screen(id: UUID().uuidString, nextScreen: AnyView(screenView))
+            screenStack.push(screen)
+        }
     }
     
     func pop(to: PopDestination) {
-        switch to {
-        case .root:
-            screenStack.popToRoot()
-        case .previous:
-            screenStack.pop()
+        navigationType = .pop
+        
+        withAnimation(easing) {
+            switch to {
+            case .root:
+                screenStack.popToRoot()
+            case .previous:
+                screenStack.pop()
+            }
         }
     }
 }
@@ -113,7 +133,15 @@ enum PopDestination {
     case root
 }
 
+public enum NavType {
+    case push
+    case pop
+}
 
+public enum NavTransition {
+    case none
+    case custom(AnyTransition)
+}
 
 //MARK:-NAVIGATION LOGIC
 private struct ScreenStack {
