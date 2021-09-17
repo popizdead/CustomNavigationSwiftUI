@@ -12,8 +12,7 @@ struct CustomNavigationSwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabControllerView()
-                .environmentObject(TabRouter())
+            SegmentionController()
         }
     }
 }
