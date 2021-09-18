@@ -33,7 +33,7 @@ struct ArtsListScreen: View {
 }
 
 struct ArtObjectCell: View {
-    @EnvironmentObject var dataSourceModel: DataSourceModel
+    @EnvironmentObject var dataSourceModel: CategoriesModel
     
     var item: ArtObject
     

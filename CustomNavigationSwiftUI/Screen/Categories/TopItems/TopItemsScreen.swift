@@ -7,10 +7,20 @@
 
 import SwiftUI
 import Networking
+import SDWebImageSwiftUI
 
 struct TopItemsScreen: View {
     
-    @EnvironmentObject var sourceModel : DataSourceModel
+    var body: some View {
+        NavControllerView(transition: .custom(.present)) {
+            FirstTopScreen()
+        }
+    }
+}
+
+struct FirstTopScreen: View {
+    
+    @ObservedObject var sourceModel : TopItemModel = .init()
     
     var body: some View {
         List {
@@ -23,18 +33,29 @@ struct TopItemsScreen: View {
 }
 
 struct TopItemCell: View {
-    @EnvironmentObject var dataSourceModel: DataSourceModel
+    @EnvironmentObject var dataSourceModel: TopItemModel
     
     var item: ArtObject
     
     var body: some View {
-        VStack {
-            Text(item.title)
-                .padding(.leading)
-            Text(item.principalOrFirstMaker)
-                .padding(.leading)
-        }
-        .padding(.leading)
+        VStack(alignment: .leading, spacing: 5, content: {
+            if let imgUrl = item.webImage?.url {
+                WebImage(url: URL(string: imgUrl))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 150)
+            }
+            
+            VStack(alignment: .leading, spacing: 5, content: {
+                Text(item.title)
+                    .fontWeight(.semibold)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                Text(item.principalOrFirstMaker)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            })
+        })
         .onAppear() {
             if self.dataSourceModel.topItemsList.isLast(item) {
                 dataSourceModel.requestNextTopPage()

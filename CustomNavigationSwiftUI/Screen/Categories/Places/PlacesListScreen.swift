@@ -13,12 +13,12 @@ struct PlacesListScreen: View {
     
     var body: some View {
         NavControllerView(transition: .custom(.present)) {
-            FirstPlaces()
+            FirstPlacesScreen()
         }
     }
 }
 
-struct FirstPlaces: View {
+struct FirstPlacesScreen: View {
     
     @ObservedObject var sourceModel : CategoriesModel = .init(type: .places)
    

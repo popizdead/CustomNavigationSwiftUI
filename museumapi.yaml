@@ -81,6 +81,8 @@ components:
           type: string
         title:
           type: string
+        webImage:
+          $ref: '#/components/schemas/ArtImage'
         hasImage:
           type: boolean
         principalOrFirstMaker:
@@ -91,6 +93,22 @@ components:
           type: boolean
         permitDownload:
           type: boolean
+
+    ArtImage:
+      type: object
+      properties:
+        url:
+          type: string
+        guid:
+          type: string
+        offsetPercentageX:
+          type: integer
+        offsetPercentageY:
+          type: integer
+        width:
+          type: integer
+        height:
+          type: integer
 
     FacetSource:
       type: object
