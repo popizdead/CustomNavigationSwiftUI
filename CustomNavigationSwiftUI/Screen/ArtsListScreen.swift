@@ -16,13 +16,15 @@ struct ArtsListScreen: View {
         VStack {
             PopButton(dest: .previous, Label: {
                 Text("Back")
+            }, action: {
+                sourceModel.artObjectsList.removeAll()
             })
-//            List {
-//                ForEach(sourceModel.categoryReviewList) { item in
-//                    ArtObjectCell(item: item)
-//                        .environmentObject(sourceModel)
-//                }
-//            }
+            List {
+                ForEach(sourceModel.artObjectsList) { item in
+                    ArtObjectCell(item: item)
+                        .environmentObject(sourceModel)
+                }
+            }
             .onAppear {
                 print("Appearing fucking screen")
             }

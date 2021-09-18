@@ -30,28 +30,6 @@ class DataSourceModel: ObservableObject {
         getRequst()
     }
     
-    //Search
-    func getSearchRequest(_ s: String) {
-        MuseumAPI.getRequest(key: "s4QQN2YY", p: currentSearchPage, q: s, apiResponseQueue: .main) { response, error in
-            if let err = error {
-                print(err)
-            } else {
-                guard let source = response else { return }
-                
-                self.appendSearchItemsToSource(response: source)
-                
-            }
-        }
-    }
-    
-    private func appendSearchItemsToSource(response: ResponseSource) {
-        guard let artObject = response.artObjects else { return }
-        
-        self.categoryReviewList = artObject
-        print("ADDED ADDED \(self.categoryReviewList.count)")
-    }
-    
-    
     //Next page
     func requestNextTopPage() {
         guard isPageLoading == false else { return }

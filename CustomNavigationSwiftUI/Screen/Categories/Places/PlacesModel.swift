@@ -18,6 +18,7 @@ class CategoriesModel: ObservableObject {
     
     //Category source
     @Published var categoriesList: [Facet] = .init()
+    @Published var artObjectsList: [ArtObject] = .init()
     
     init(type: CategoryType) {
         getAllCategoriesOf(type)
@@ -48,4 +49,26 @@ class CategoriesModel: ObservableObject {
     
         self.categoriesList = categoriesSource
     }
+    
+    //MARK:-SEARCH
+    //Search
+    func getSearchRequest(_ s: String) {
+        MuseumAPI.getRequest(key: "s4QQN2YY", p: 0, q: s, apiResponseQueue: .main) { response, error in
+            if let err = error {
+                print(err)
+            } else {
+                guard let source = response else { return }
+                
+                self.appendSearchItemsToSource(response: source)
+                
+            }
+        }
+    }
+    
+    private func appendSearchItemsToSource(response: ResponseSource) {
+        guard let artObject = response.artObjects else { return }
+        
+        self.artObjectsList = artObject
+    }
+    
 }

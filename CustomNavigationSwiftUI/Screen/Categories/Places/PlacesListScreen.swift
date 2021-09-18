@@ -10,19 +10,17 @@ import Networking
 
 
 struct PlacesListScreen: View {
-    @EnvironmentObject var sourceModel : CategoriesModel
     
     var body: some View {
         NavControllerView(transition: .custom(.present)) {
             FirstPlaces()
-                .environmentObject(sourceModel)
         }
     }
 }
 
 struct FirstPlaces: View {
     
-    @EnvironmentObject var sourceModel : CategoriesModel
+    @ObservedObject var sourceModel : CategoriesModel = .init(type: .places)
    
     var body: some View {
             VStack {
@@ -55,7 +53,7 @@ struct PlaceCell: View {
         PushButton(dest: ArtsListScreen().environmentObject(dataSourceModel), Label: {
             Text(place.key)
         }, action: {
-            //dataSourceModel.getSearchRequest(place.key)
+            dataSourceModel.getSearchRequest(place.key)
         })
     }
 }

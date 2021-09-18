@@ -80,13 +80,18 @@ public struct PopButton<Label>: View where Label: View {
     private let popDestination: PopDestination
     private let label: Label
     
-    init(dest: PopDestination, @ViewBuilder Label: @escaping () -> Label) {
+    private let action: () -> Void
+    
+    init(dest: PopDestination, @ViewBuilder Label: @escaping () -> Label, action: @escaping () -> Void) {
         self.popDestination = dest
         self.label = Label()
+        
+        self.action = action
     }
     
     public var body: some View {
         label.onTapGesture {
+            action()
             viewModel.pop(to: popDestination)
         }
     }
