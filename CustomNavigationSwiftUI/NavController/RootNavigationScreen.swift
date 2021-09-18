@@ -12,7 +12,6 @@ struct RootNavigationController: View {
     
     private var screensTitle : [String] = ["Top", "Places", "Authors"]
     
-    private var facetsModel = DataSourceModel()
     
     var body: some View {
         VStack {
@@ -26,13 +25,12 @@ struct RootNavigationController: View {
             
             if segmentionChoise == 0 {
                 TopItemsScreen()
-                    .environmentObject(facetsModel)
             }
             else if segmentionChoise == 1 {
                 PlacesListScreen()
-            } else if segmentionChoise == 2 {
+            }
+            else if segmentionChoise == 2 {
                 AuthorsScreen()
-                    .environmentObject(facetsModel)
             }
         }
     }

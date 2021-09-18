@@ -22,9 +22,9 @@
 		638ABFCE26F5C3FA0060E445 /* AuthorsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638ABFCD26F5C3FA0060E445 /* AuthorsScreen.swift */; };
 		63E6B8C526F6086F002F0D82 /* RootNavigationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8C426F6086F002F0D82 /* RootNavigationScreen.swift */; };
 		63E6B8C826F609E7002F0D82 /* ArtsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8C726F609E7002F0D82 /* ArtsListScreen.swift */; };
-		63E6B8CA26F60C2E002F0D82 /* DataSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8C926F60C2E002F0D82 /* DataSourceModel.swift */; };
 		63E6B8CD26F62225002F0D82 /* PlacesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8CC26F62225002F0D82 /* PlacesModel.swift */; };
 		63E6B8D026F62432002F0D82 /* AuthorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8CF26F62432002F0D82 /* AuthorsViewModel.swift */; };
+		63E6B8D426F644E2002F0D82 /* TopItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8D326F644E2002F0D82 /* TopItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,9 +45,9 @@
 		638ABFCD26F5C3FA0060E445 /* AuthorsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsScreen.swift; sourceTree = "<group>"; };
 		63E6B8C426F6086F002F0D82 /* RootNavigationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationScreen.swift; sourceTree = "<group>"; };
 		63E6B8C726F609E7002F0D82 /* ArtsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtsListScreen.swift; sourceTree = "<group>"; };
-		63E6B8C926F60C2E002F0D82 /* DataSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceModel.swift; sourceTree = "<group>"; };
 		63E6B8CC26F62225002F0D82 /* PlacesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesModel.swift; sourceTree = "<group>"; };
 		63E6B8CF26F62432002F0D82 /* AuthorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsViewModel.swift; sourceTree = "<group>"; };
+		63E6B8D326F644E2002F0D82 /* TopItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopItemModel.swift; sourceTree = "<group>"; };
 		8ED1F1D2A5B7E4E26021D5BB /* Pods-CustomNavigationSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomNavigationSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		AB67E85D18EEB4AFBABCE2C7 /* Pods-CustomNavigationSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomNavigationSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E043B6B8FCF7076B0912C0 /* Pods_CustomNavigationSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomNavigationSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +108,6 @@
 			children = (
 				6315F08626F2BC9000E09EB5 /* CustomNavigationSwiftUIApp.swift */,
 				6315F09726F2BD2800E09EB5 /* NavController */,
-				638ABFD026F5C5EC0060E445 /* Models */,
 				6315F09A26F2C7A900E09EB5 /* Screen */,
 				632240A926F5CB3C000A21EC /* Extensions */,
 				6315F08A26F2BC9200E09EB5 /* Assets.xcassets */,
@@ -163,20 +162,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		638ABFD026F5C5EC0060E445 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				63E6B8C926F60C2E002F0D82 /* DataSourceModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		63E6B8C626F609C9002F0D82 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				63E6B8CB26F62212002F0D82 /* Places */,
 				63E6B8CE26F62422002F0D82 /* Authors */,
-				632240AA26F5D83E000A21EC /* TopItemsScreen.swift */,
+				63E6B8D226F644C6002F0D82 /* TopItems */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -199,6 +190,15 @@
 			path = Authors;
 			sourceTree = "<group>";
 		};
+		63E6B8D226F644C6002F0D82 /* TopItems */ = {
+			isa = PBXGroup;
+			children = (
+				632240AA26F5D83E000A21EC /* TopItemsScreen.swift */,
+				63E6B8D326F644E2002F0D82 /* TopItemModel.swift */,
+			);
+			path = TopItems;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -210,7 +210,6 @@
 				6315F07F26F2BC9000E09EB5 /* Sources */,
 				6315F08026F2BC9000E09EB5 /* Frameworks */,
 				6315F08126F2BC9000E09EB5 /* Resources */,
-				8E28DBE73C23E8E9EDDD3E77 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -291,23 +290,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E28DBE73C23E8E9EDDD3E77 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -317,6 +299,7 @@
 			files = (
 				63E6B8CD26F62225002F0D82 /* PlacesModel.swift in Sources */,
 				6336FC0826F5B78C00FE08E8 /* PlacesListScreen.swift in Sources */,
+				63E6B8D426F644E2002F0D82 /* TopItemModel.swift in Sources */,
 				6315F09926F2C7A000E09EB5 /* FirstScreen.swift in Sources */,
 				63E6B8D026F62432002F0D82 /* AuthorsViewModel.swift in Sources */,
 				638ABFCE26F5C3FA0060E445 /* AuthorsScreen.swift in Sources */,
@@ -324,7 +307,6 @@
 				6315F09C26F2CB4300E09EB5 /* AnyTransition.swift in Sources */,
 				632240AD26F5D89A000A21EC /* Networking+.swift in Sources */,
 				6315F09626F2BD1A00E09EB5 /* CustomNavigationController.swift in Sources */,
-				63E6B8CA26F60C2E002F0D82 /* DataSourceModel.swift in Sources */,
 				6315F08726F2BC9000E09EB5 /* CustomNavigationSwiftUIApp.swift in Sources */,
 				63E6B8C826F609E7002F0D82 /* ArtsListScreen.swift in Sources */,
 				632240AB26F5D83E000A21EC /* TopItemsScreen.swift in Sources */,
