@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Networking
 
 //MARK:-PUBLIC
 public struct NavControllerView<Content>: View where Content: View {
@@ -55,14 +56,19 @@ public struct PushButton<Label, Destination>: View where Label: View, Destinatio
     private let destination: Destination
     private let label: Label
     
-    init(dest: Destination, @ViewBuilder Label: @escaping () -> Label) {
+    private let action: () -> Void
+    
+    init(dest: Destination, @ViewBuilder Label: @escaping () -> Label, action: @escaping () -> Void) {
         self.destination = dest
         self.label = Label()
+        
+        self.action = action
     }
     
     public var body: some View {
         label.onTapGesture {
             viewModel.push(destination)
+            action()
         }
     }
 }

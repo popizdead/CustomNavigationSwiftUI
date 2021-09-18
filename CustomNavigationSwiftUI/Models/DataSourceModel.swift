@@ -1,5 +1,5 @@
 //
-//  PlacesViewModel.swift
+//  DataSourceModel.swift
 //  CustomNavigationSwiftUI
 //
 //  Created by Даниил Дорожкин on 18/09/2021.
@@ -11,24 +11,55 @@ import Networking
 //MARK: -SOURCE
 class DataSourceModel: ObservableObject {
     
+    //Category source
     @Published var placesList: [Facet] = .init()
     @Published var authorsList: [Facet] = .init()
-    @Published var topItems: [ArtObject] = .init()
+    @Published var topItemsList: [ArtObject] = .init()
     
+    //Top art object model
     @Published var currentPage: Int = 0
     @Published var isPageLoading: Bool = false
+    
+    //Art or category review source
+    @Published var categoryReviewList: [ArtObject] = .init()
+    @Published var categorySelected: Facet?
+    @Published var currentSearchPage: Int = 0
+    @Published var isSearchPageLoading: Bool = false
     
     init() {
         getRequst()
     }
     
+    //Search
+    func getSearchRequest(_ s: String) {
+        MuseumAPI.getRequest(key: "s4QQN2YY", p: currentSearchPage, q: s, apiResponseQueue: .main) { response, error in
+            if let err = error {
+                print(err)
+            } else {
+                guard let source = response else { return }
+                
+                self.appendSearchItemsToSource(response: source)
+                
+            }
+        }
+    }
+    
+    private func appendSearchItemsToSource(response: ResponseSource) {
+        guard let artObject = response.artObjects else { return }
+        
+        self.categoryReviewList = artObject
+        print("ADDED ADDED \(self.categoryReviewList.count)")
+    }
+    
+    
+    //Next page
     func requestNextTopPage() {
         guard isPageLoading == false else { return }
         
         currentPage += 1
         isPageLoading = true
         
-        FacetsAPI.getFacetsList(key: "s4QQN2YY", p: currentPage) { response, error in
+        MuseumAPI.getRequest(key: "s4QQN2YY", p: currentPage) { response, error in
             if let err = error {
                 print(err)
             } else {
@@ -42,13 +73,13 @@ class DataSourceModel: ObservableObject {
     private func appendTopItemsToSource(reponse: ResponseSource) {
         guard let topSource = reponse.artObjects else { return }
         
-        self.topItems.append(contentsOf: topSource)
+        self.topItemsList.append(contentsOf: topSource)
         isPageLoading = false
     }
     
     //MARK: -REQUESTS
     private func getRequst() {
-        FacetsAPI.getFacetsList(key: "s4QQN2YY", p: currentPage) { response, error in
+        MuseumAPI.getRequest(key: "s4QQN2YY", p: currentPage) { response, error in
             if let err = error {
                 print(err)
             } else {
@@ -88,7 +119,8 @@ extension DataSourceModel {
         case .top:
             guard let topSource = source.artObjects else { return }
             
-            self.topItems = topSource
+            self.topItemsList = topSource
         }
     }
 }
+

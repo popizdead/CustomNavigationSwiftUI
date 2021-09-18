@@ -14,7 +14,7 @@ struct TopItemsScreen: View {
     
     var body: some View {
         List {
-            ForEach(sourceModel.topItems) { item in
+            ForEach(sourceModel.topItemsList) { item in
                 TopItemCell(item: item)
                     .environmentObject(sourceModel)
             }
@@ -36,12 +36,12 @@ struct TopItemCell: View {
         }
         .padding(.leading)
         .onAppear() {
-            if self.dataSourceModel.topItems.isLast(item) {
+            if self.dataSourceModel.topItemsList.isLast(item) {
                 dataSourceModel.requestNextTopPage()
             }
         }
         
-        if self.dataSourceModel.topItems.isLast(item) && dataSourceModel.isPageLoading {
+        if self.dataSourceModel.topItemsList.isLast(item) && dataSourceModel.isPageLoading {
             VStack(alignment: .center) {
                 Divider()
                 ProgressView()

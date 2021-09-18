@@ -12,7 +12,7 @@ struct CustomNavigationSwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SegmentionController()
+            RootNavigationController()
         }
     }
 }

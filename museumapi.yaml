@@ -6,7 +6,7 @@ info:
 servers:
 - url: https://www.rijksmuseum.nl/api/en/
 tags:
-- name: facets
+- name: museum
   description: Category facets
 - name: topArtObjects
   description: Top art objects
@@ -14,14 +14,20 @@ paths:
   /collection/:
     get:
       tags:
-      - facets
+      - museum
       summary: Facets List
-      operationId: getFacetsList
+      operationId: getRequest
       parameters:
       - name: key
         in: query
         description: Api Key
         required: true
+        schema:
+          type: string
+      - name: q
+        in: query
+        description: Search request value
+        required: false
         schema:
           type: string
       - name: p
@@ -43,7 +49,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
-
 components:
   schemas:
     ResponseSource:

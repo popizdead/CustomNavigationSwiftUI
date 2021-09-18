@@ -1,17 +1,19 @@
 //
-//  ContentView.swift
+//  RootNavigationScreen.swift
 //  CustomNavigationSwiftUI
 //
-//  Created by Даниил Дорожкин on 16/09/2021.
+//  Created by Даниил Дорожкин on 18/09/2021.
 //
 
 import SwiftUI
 
-struct SegmentionController: View {
+struct RootNavigationController: View {
     @State var segmentionChoise = 0
     
     private var screensTitle : [String] = ["Top", "Places", "Authors"]
+    
     private var facetsModel = DataSourceModel()
+    @ObservedObject var sourceModel : CategoriesModel = .init(type: .places)
     
     var body: some View {
         VStack {
@@ -29,11 +31,10 @@ struct SegmentionController: View {
             }
             else if segmentionChoise == 1 {
                 PlacesListScreen()
-                    .environmentObject(facetsModel)
+                    .environmentObject(sourceModel)
             } else if segmentionChoise == 2 {
                 AuthorsScreen()
                     .environmentObject(facetsModel)
-                Spacer()
             }
         }
     }
