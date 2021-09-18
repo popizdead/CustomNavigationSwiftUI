@@ -6,9 +6,19 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct AmsterdamHomeScreen: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button("Download data", action: {
+            request()
+        })
     }
 }
+
+func request() {
+    AF.request("https://www.rijksmuseum.nl/api/en/collection?key=s4QQN2YY").responseJSON { data in
+        print(data.result)
+    }
+}
+

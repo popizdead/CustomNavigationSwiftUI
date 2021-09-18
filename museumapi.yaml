@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: RiijskAPI
+  description: rijksmuseum.nl
+  version: 1.0.0
+servers:
+- url: https://www.rijksmuseum.nl/api/en/
+tags:
+- name: facets
+  description: Art object facets
+paths:
+  /collection/:
+    get:
+      tags:
+      - facets
+      summary: Facets List
+      operationId: getFacetsList
+      parameters:
+      - name: key
+        in: query
+        description: Api Key
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSource'
+        default:
+          description: enexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+components:
+  schemas:
+    ResponseSource:
+      type: object
+      properties:
+        elapsedMilliseconds:
+          type: integer
+        count:
+          type: integer
+        artObjects:
+          type: dictionary
+          items:
+            $ref: '#/components/schemas/ArtObject'
+        facets:
+          type: array
+          items:
+            $ref: '#/components/schemas/FacetSource'
+
+    ArtObject:
+      type: object
+      properties:
+        id:
+          type: string
+        objectNumber:
+          type: string
+        title:
+          type: string
+        hasImage:
+          type: boolean
+        principalOrFirstMaker:
+          type: string
+        longTitle:
+          type: string
+        showImage:
+          type: boolean
+        permitDownload:
+          type: boolean
+
+    FacetSource:
+      type: object
+      properties:
+        facets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Facet'
+        name:
+          type: string
+    Facet:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: integer
+    ErrorModel:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          maximum: 600
+          minimum: 100
+          type: integer

@@ -24,7 +24,8 @@ struct SegmentionController: View {
                 }.pickerStyle(SegmentedPickerStyle())
                 
                 if segmentionChoise == 0 {
-                    AmsterdamHomeScreen()
+                    PlacesListScreen()
+                        .environmentObject(ListScreenViewModel())
                 } else if segmentionChoise == 1 {
                     NavControllerView(transition: .custom(.present)) {
                         FirstScreen()

@@ -16,3 +16,4 @@ struct CustomNavigationSwiftUIApp: App {
         }
     }
 }
+
