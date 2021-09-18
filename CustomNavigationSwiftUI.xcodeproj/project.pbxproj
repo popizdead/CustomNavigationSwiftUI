@@ -16,9 +16,13 @@
 		6315F09C26F2CB4300E09EB5 /* AnyTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6315F09B26F2CB4300E09EB5 /* AnyTransition.swift */; };
 		6315F09E26F2D5CE00E09EB5 /* AmsterdamHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6315F09D26F2D5CE00E09EB5 /* AmsterdamHomeScreen.swift */; };
 		6315F0A226F2D6A500E09EB5 /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6315F0A126F2D6A500E09EB5 /* SegmentedController.swift */; };
+		632240A826F5CA85000A21EC /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632240A726F5CA85000A21EC /* Array+.swift */; };
+		632240AB26F5D83E000A21EC /* TopItemsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632240AA26F5D83E000A21EC /* TopItemsScreen.swift */; };
+		632240AD26F5D89A000A21EC /* Networking+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632240AC26F5D89A000A21EC /* Networking+.swift */; };
 		6336FC0826F5B78C00FE08E8 /* PlacesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336FC0726F5B78C00FE08E8 /* PlacesListScreen.swift */; };
 		6336FC0B26F5B7D700FE08E8 /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336FC0A26F5B7D700FE08E8 /* PlacesViewModel.swift */; };
 		633BCBAA26F5B8E200E89EBC /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 633BCBA926F5B8E200E89EBC /* Networking */; };
+		638ABFCE26F5C3FA0060E445 /* AuthorsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638ABFCD26F5C3FA0060E445 /* AuthorsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +36,14 @@
 		6315F09B26F2CB4300E09EB5 /* AnyTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyTransition.swift; sourceTree = "<group>"; };
 		6315F09D26F2D5CE00E09EB5 /* AmsterdamHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmsterdamHomeScreen.swift; sourceTree = "<group>"; };
 		6315F0A126F2D6A500E09EB5 /* SegmentedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
+		632240A726F5CA85000A21EC /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		632240AA26F5D83E000A21EC /* TopItemsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopItemsScreen.swift; sourceTree = "<group>"; };
+		632240AC26F5D89A000A21EC /* Networking+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Networking+.swift"; sourceTree = "<group>"; };
 		6336FC0526F5B10500FE08E8 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Networking; path = Modules/Networking; sourceTree = "<group>"; };
 		6336FC0626F5B2CE00FE08E8 /* generate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate.sh; sourceTree = "<group>"; };
 		6336FC0726F5B78C00FE08E8 /* PlacesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListScreen.swift; sourceTree = "<group>"; };
 		6336FC0A26F5B7D700FE08E8 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
+		638ABFCD26F5C3FA0060E445 /* AuthorsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsScreen.swift; sourceTree = "<group>"; };
 		8ED1F1D2A5B7E4E26021D5BB /* Pods-CustomNavigationSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomNavigationSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		AB67E85D18EEB4AFBABCE2C7 /* Pods-CustomNavigationSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomNavigationSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E043B6B8FCF7076B0912C0 /* Pods_CustomNavigationSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomNavigationSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +104,9 @@
 			children = (
 				6315F08626F2BC9000E09EB5 /* CustomNavigationSwiftUIApp.swift */,
 				6315F09726F2BD2800E09EB5 /* NavController */,
+				638ABFD026F5C5EC0060E445 /* Models */,
 				6315F09A26F2C7A900E09EB5 /* Screen */,
+				632240A926F5CB3C000A21EC /* Extensions */,
 				6315F08A26F2BC9200E09EB5 /* Assets.xcassets */,
 				6315F08F26F2BC9200E09EB5 /* Info.plist */,
 				6315F08C26F2BC9200E09EB5 /* Preview Content */,
@@ -127,6 +137,8 @@
 				6315F09826F2C7A000E09EB5 /* FirstScreen.swift */,
 				6315F09D26F2D5CE00E09EB5 /* AmsterdamHomeScreen.swift */,
 				6336FC0926F5B7C600FE08E8 /* Places */,
+				638ABFCF26F5C3FD0060E445 /* Authors */,
+				632240AA26F5D83E000A21EC /* TopItemsScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -138,6 +150,15 @@
 				6315F09B26F2CB4300E09EB5 /* AnyTransition.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		632240A926F5CB3C000A21EC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				632240A726F5CA85000A21EC /* Array+.swift */,
+				632240AC26F5D89A000A21EC /* Networking+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		6336FC0326F40CCC00FE08E8 /* SegmentedController */ = {
@@ -152,9 +173,24 @@
 			isa = PBXGroup;
 			children = (
 				6336FC0726F5B78C00FE08E8 /* PlacesListScreen.swift */,
-				6336FC0A26F5B7D700FE08E8 /* PlacesViewModel.swift */,
 			);
 			path = Places;
+			sourceTree = "<group>";
+		};
+		638ABFCF26F5C3FD0060E445 /* Authors */ = {
+			isa = PBXGroup;
+			children = (
+				638ABFCD26F5C3FA0060E445 /* AuthorsScreen.swift */,
+			);
+			path = Authors;
+			sourceTree = "<group>";
+		};
+		638ABFD026F5C5EC0060E445 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6336FC0A26F5B7D700FE08E8 /* PlacesViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,11 +312,15 @@
 				6336FC0826F5B78C00FE08E8 /* PlacesListScreen.swift in Sources */,
 				6315F09926F2C7A000E09EB5 /* FirstScreen.swift in Sources */,
 				6315F09E26F2D5CE00E09EB5 /* AmsterdamHomeScreen.swift in Sources */,
+				638ABFCE26F5C3FA0060E445 /* AuthorsScreen.swift in Sources */,
 				6315F0A226F2D6A500E09EB5 /* SegmentedController.swift in Sources */,
 				6336FC0B26F5B7D700FE08E8 /* PlacesViewModel.swift in Sources */,
 				6315F09C26F2CB4300E09EB5 /* AnyTransition.swift in Sources */,
+				632240AD26F5D89A000A21EC /* Networking+.swift in Sources */,
 				6315F09626F2BD1A00E09EB5 /* CustomNavigationController.swift in Sources */,
 				6315F08726F2BC9000E09EB5 /* CustomNavigationSwiftUIApp.swift in Sources */,
+				632240AB26F5D83E000A21EC /* TopItemsScreen.swift in Sources */,
+				632240A826F5CA85000A21EC /* Array+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

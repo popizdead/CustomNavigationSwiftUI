@@ -7,7 +7,9 @@ servers:
 - url: https://www.rijksmuseum.nl/api/en/
 tags:
 - name: facets
-  description: Art object facets
+  description: Category facets
+- name: topArtObjects
+  description: Top art objects
 paths:
   /collection/:
     get:
@@ -22,6 +24,12 @@ paths:
         required: true
         schema:
           type: string
+      - name: p
+        in: query
+        description: Number of page
+        required: true
+        schema:
+          type: integer
       responses:
         "200":
           description: success
@@ -35,6 +43,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
+
 components:
   schemas:
     ResponseSource:
@@ -54,6 +63,11 @@ components:
             $ref: '#/components/schemas/FacetSource'
 
     ArtObject:
+      required:
+        - id
+        - title
+        - longTitle
+        - principalOrFirstMaker
       type: object
       properties:
         id:
@@ -82,7 +96,11 @@ components:
             $ref: '#/components/schemas/Facet'
         name:
           type: string
+
     Facet:
+      required:
+        - key
+        - value
       type: object
       properties:
         key:
