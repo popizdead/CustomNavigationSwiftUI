@@ -34,6 +34,7 @@ struct FirstTopScreen: View {
 
 struct TopItemCell: View {
     @EnvironmentObject var dataSourceModel: TopItemModel
+    @ObservedObject var detailsModel : DetailModel = .init()
     
     var item: ArtObject
     
@@ -54,6 +55,9 @@ struct TopItemCell: View {
                 Text(item.principalOrFirstMaker)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                PushButton(dest: DetailsScreen(reviewArt: item), Label: {
+                    Text("Review")
+                }, action: {})
             })
         })
         .onAppear() {

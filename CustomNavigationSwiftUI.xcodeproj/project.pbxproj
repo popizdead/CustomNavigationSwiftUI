@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B3FEF90E6471857D7DA04CE /* Pods_CustomNavigationSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E043B6B8FCF7076B0912C0 /* Pods_CustomNavigationSwiftUI.framework */; };
 		6315F08726F2BC9000E09EB5 /* CustomNavigationSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6315F08626F2BC9000E09EB5 /* CustomNavigationSwiftUIApp.swift */; };
 		6315F08B26F2BC9200E09EB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6315F08A26F2BC9200E09EB5 /* Assets.xcassets */; };
 		6315F08E26F2BC9200E09EB5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6315F08D26F2BC9200E09EB5 /* Preview Assets.xcassets */; };
@@ -26,6 +25,9 @@
 		63E6B8D426F644E2002F0D82 /* TopItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8D326F644E2002F0D82 /* TopItemModel.swift */; };
 		63E6B8D926F649FC002F0D82 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 63E6B8D826F649FC002F0D82 /* SDWebImage */; };
 		63E6B8DC26F64A28002F0D82 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 63E6B8DB26F64A28002F0D82 /* SDWebImageSwiftUI */; };
+		63E6B8DE26F6575D002F0D82 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8DD26F6575C002F0D82 /* DetailsScreen.swift */; };
+		63E6B8E126F657E5002F0D82 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B8E026F657E5002F0D82 /* DetailModel.swift */; };
+		63E6B8E326F66650002F0D82 /* Pods_CustomNavigationSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E6B8E226F66650002F0D82 /* Pods_CustomNavigationSwiftUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,9 +50,11 @@
 		63E6B8CC26F62225002F0D82 /* PlacesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesModel.swift; sourceTree = "<group>"; };
 		63E6B8CF26F62432002F0D82 /* AuthorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsViewModel.swift; sourceTree = "<group>"; };
 		63E6B8D326F644E2002F0D82 /* TopItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopItemModel.swift; sourceTree = "<group>"; };
+		63E6B8DD26F6575C002F0D82 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
+		63E6B8E026F657E5002F0D82 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		63E6B8E226F66650002F0D82 /* Pods_CustomNavigationSwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods_CustomNavigationSwiftUI.framework; sourceTree = "<group>"; };
 		8ED1F1D2A5B7E4E26021D5BB /* Pods-CustomNavigationSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomNavigationSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		AB67E85D18EEB4AFBABCE2C7 /* Pods-CustomNavigationSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomNavigationSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-CustomNavigationSwiftUI/Pods-CustomNavigationSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
-		B3E043B6B8FCF7076B0912C0 /* Pods_CustomNavigationSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomNavigationSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +63,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				63E6B8DC26F64A28002F0D82 /* SDWebImageSwiftUI in Frameworks */,
+				63E6B8E326F66650002F0D82 /* Pods_CustomNavigationSwiftUI.framework in Frameworks */,
 				63E6B8D926F649FC002F0D82 /* SDWebImage in Frameworks */,
 				633BCBAA26F5B8E200E89EBC /* Networking in Frameworks */,
-				3B3FEF90E6471857D7DA04CE /* Pods_CustomNavigationSwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +84,7 @@
 		4D114AF2F270FA7C8DD3D2F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B3E043B6B8FCF7076B0912C0 /* Pods_CustomNavigationSwiftUI.framework */,
+				63E6B8E226F66650002F0D82 /* Pods_CustomNavigationSwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				63E6B8C726F609E7002F0D82 /* ArtsListScreen.swift */,
+				63E6B8DF26F65763002F0D82 /* Details */,
 				63E6B8C626F609C9002F0D82 /* Categories */,
 			);
 			path = Screen;
@@ -198,6 +203,15 @@
 				63E6B8D326F644E2002F0D82 /* TopItemModel.swift */,
 			);
 			path = TopItems;
+			sourceTree = "<group>";
+		};
+		63E6B8DF26F65763002F0D82 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				63E6B8DD26F6575C002F0D82 /* DetailsScreen.swift */,
+				63E6B8E026F657E5002F0D82 /* DetailModel.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +324,8 @@
 				63E6B8D026F62432002F0D82 /* AuthorsViewModel.swift in Sources */,
 				638ABFCE26F5C3FA0060E445 /* AuthorsScreen.swift in Sources */,
 				63E6B8C526F6086F002F0D82 /* RootNavigationScreen.swift in Sources */,
+				63E6B8E126F657E5002F0D82 /* DetailModel.swift in Sources */,
+				63E6B8DE26F6575D002F0D82 /* DetailsScreen.swift in Sources */,
 				6315F09C26F2CB4300E09EB5 /* AnyTransition.swift in Sources */,
 				632240AD26F5D89A000A21EC /* Networking+.swift in Sources */,
 				6315F09626F2BD1A00E09EB5 /* CustomNavigationController.swift in Sources */,
@@ -449,6 +465,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CustomNavigationSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = D97HLWHSV2;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = CustomNavigationSwiftUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -472,6 +492,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CustomNavigationSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = D97HLWHSV2;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = CustomNavigationSwiftUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (

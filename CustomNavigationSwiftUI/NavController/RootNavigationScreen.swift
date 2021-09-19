@@ -12,7 +12,6 @@ struct RootNavigationController: View {
     
     private var screensTitle : [String] = ["Top", "Places", "Authors"]
     
-    
     var body: some View {
         VStack {
             Picker("Options", selection: $segmentionChoise) {
