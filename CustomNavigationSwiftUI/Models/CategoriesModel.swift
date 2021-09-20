@@ -20,6 +20,11 @@ class CategoriesModel: ObservableObject {
     @Published var categoriesList: [Facet] = .init()
     @Published var artObjectsList: [ArtObject] = .init()
     
+    @Published var currentPage: Int = 0
+    @Published var isPageLoading: Bool = false
+    
+    @Published var currentSearch: String = ""
+    
     init(type: CategoryType) {
         getAllCategoriesOf(type)
     }
@@ -53,14 +58,17 @@ class CategoriesModel: ObservableObject {
     //MARK:-SEARCH
     //Search
     func getSearchRequest(_ s: String) {
-        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", q: s, p: 0, apiResponseQueue: .main) { response, error in
+        self.currentSearch = s
+        self.isPageLoading = true
+        
+        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", q: currentSearch, p: 0, apiResponseQueue: .main) { response, error in
             if let err = error {
                 print(err)
             } else {
                 guard let source = response else { return }
                 
+                self.currentPage += 1
                 self.appendSearchItemsToSource(response: source)
-                
             }
         }
     }
@@ -69,6 +77,33 @@ class CategoriesModel: ObservableObject {
         guard let artObject = response.artObjects else { return }
         
         self.artObjectsList = artObject
+        self.isPageLoading = false
+    }
+    
+    //MARK:-PAGING
+    //Next page
+    func requestNextPage() {
+        guard isPageLoading == false else { return }
+        
+        currentPage += 1
+        isPageLoading = true
+        
+        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", q: currentSearch,  p: currentPage) { response, error in
+            if let err = error {
+                print(err)
+            } else {
+                guard let source = response else { return }
+                
+                self.appendTopItemsToSource(reponse: source)
+            }
+        }
+    }
+    
+    private func appendTopItemsToSource(reponse: ResponseSource) {
+        guard let topSource = reponse.artObjects else { return }
+         
+        self.artObjectsList.append(contentsOf: topSource)
+        isPageLoading = false
     }
     
 }

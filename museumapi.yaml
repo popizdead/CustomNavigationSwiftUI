@@ -42,6 +42,12 @@ paths:
         required: false
         schema:
           type: integer
+      - name: ps
+        in: query
+        description: Number of items in page
+        required: false
+        schema:
+          type: integer
       responses:
         "200":
           description: success

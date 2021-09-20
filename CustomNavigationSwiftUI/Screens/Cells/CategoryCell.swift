@@ -15,7 +15,11 @@ struct CategoryCell: View {
     
     var body: some View {
         PushButton(dest: ArtsListScreen().environmentObject(categoryModel), Label: {
-            Text(category.key)
+            HStack {
+                Spacer()
+                Text(category.key)
+                Spacer()
+            }
         }, action: {
             guard let searchRequest = category.key.addingPercentEncoding(
                 withAllowedCharacters: .urlQueryAllowed

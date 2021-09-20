@@ -21,6 +21,7 @@ class TopItemModel: ObservableObject {
         getRequst()
     }
     
+    //MARK:-PAGING
     //Next page
     func requestNextTopPage() {
         guard isPageLoading == false else { return }

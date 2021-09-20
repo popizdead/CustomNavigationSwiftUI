@@ -12,7 +12,7 @@ class DetailModel: ObservableObject {
     @Published var reviewArt : ArtObject?
     
     func requestForObject(_ id: String) {
-        MuseumAPI.getRequest(objectNumber: id, key: "s4QQN2YY") { data, error in
+        MuseumAPI.getRequest(objectNumber: id, key: "s4QQN2YY", ps: 5) { data, error in
             if let err = error {
                 print(err)
             }

@@ -19,6 +19,10 @@ struct MainListScreen: View {
     
     var screensTitle : [String] = ["Top", "Places", "Authors"]
     
+    init() {
+        UITableView.appearance().showsVerticalScrollIndicator = false
+    }
+    
     var body: some View {
         if topItemsModel.topItemsList.count == 0 {
             VStack(alignment: .center) {
@@ -35,6 +39,7 @@ struct MainListScreen: View {
                     }
                     
                 }.pickerStyle(SegmentedPickerStyle())
+                
                 
                 List {
                     if segmentionChoise == 0 {
@@ -59,7 +64,9 @@ struct MainListScreen: View {
                         }
                     }
                 }
+                
             }
+            
         }
     }
 }

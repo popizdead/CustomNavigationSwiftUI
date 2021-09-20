@@ -19,6 +19,7 @@ struct TopItemsCell: View {
         PushButton(dest: DetailsScreen().environmentObject(detailsModel), Label: {
             VStack(alignment: .center, spacing: 5, content: {
                 if let imgUrl = item.webImage?.url {
+                    //Image
                     HStack {
                         Spacer()
                         WebImage(url: URL(string: imgUrl))
@@ -30,16 +31,18 @@ struct TopItemsCell: View {
                 }
                 
                 VStack(alignment: .center, spacing: 5, content: {
+                    //Item description
                     Text(item.title)
                         .fontWeight(.semibold)
-                        .lineLimit(2)
                         .minimumScaleFactor(0.5)
                     Text(item.principalOrFirstMaker)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 })
             })
+            .padding()
         }, action: {
+            //Get data of cell item
             guard let id = item.objectNumber else { return }
             detailsModel.requestForObject(id)
         })
