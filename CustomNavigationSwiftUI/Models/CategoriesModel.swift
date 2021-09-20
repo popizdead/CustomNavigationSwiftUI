@@ -26,7 +26,7 @@ class CategoriesModel: ObservableObject {
     
     //MARK:-REQUEST
     private func getAllCategoriesOf(_ type: CategoryType) {
-        MuseumAPI.getRequest(key: "s4QQN2YY", p: 0) { response, error in
+        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", p: 0) { response, error in
             if let err = error {
                 print(err)
             } else {
@@ -53,7 +53,7 @@ class CategoriesModel: ObservableObject {
     //MARK:-SEARCH
     //Search
     func getSearchRequest(_ s: String) {
-        MuseumAPI.getRequest(key: "s4QQN2YY", p: 0, q: s, apiResponseQueue: .main) { response, error in
+        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", q: s, p: 0, apiResponseQueue: .main) { response, error in
             if let err = error {
                 print(err)
             } else {

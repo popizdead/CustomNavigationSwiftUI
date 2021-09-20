@@ -11,13 +11,19 @@ tags:
 - name: topArtObjects
   description: Top art objects
 paths:
-  /collection/:
+  /collection/{objectNumber}:
     get:
       tags:
       - museum
       summary: Facets List
       operationId: getRequest
       parameters:
+      - name: objectNumber
+        in: path
+        description: Id of object
+        required: true
+        schema:
+          type: string
       - name: key
         in: query
         description: Api Key
@@ -33,7 +39,7 @@ paths:
       - name: p
         in: query
         description: Number of page
-        required: true
+        required: false
         schema:
           type: integer
       responses:
@@ -62,6 +68,8 @@ components:
           type: dictionary
           items:
             $ref: '#/components/schemas/ArtObject'
+        artObject:
+          $ref: '#/components/schemas/ArtObject'
         facets:
           type: array
           items:
@@ -93,6 +101,8 @@ components:
           type: boolean
         permitDownload:
           type: boolean
+        plaqueDescriptionEnglish:
+          type: string
 
     ArtImage:
       type: object
@@ -130,6 +140,7 @@ components:
           type: string
         value:
           type: integer
+
     ErrorModel:
       required:
       - code

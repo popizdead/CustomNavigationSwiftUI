@@ -28,7 +28,7 @@ class TopItemModel: ObservableObject {
         currentPage += 1
         isPageLoading = true
         
-        MuseumAPI.getRequest(key: "s4QQN2YY", p: currentPage) { response, error in
+        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", p: currentPage) { response, error in
             if let err = error {
                 print(err)
             } else {
@@ -41,7 +41,7 @@ class TopItemModel: ObservableObject {
     
     private func appendTopItemsToSource(reponse: ResponseSource) {
         guard let topSource = reponse.artObjects else { return }
-        
+         
         self.topItemsList.append(contentsOf: topSource)
         isPageLoading = false
     }
@@ -49,7 +49,7 @@ class TopItemModel: ObservableObject {
     //MARK: -REQUESTS
     private func getRequst() {
         isPageLoading = true
-        MuseumAPI.getRequest(key: "s4QQN2YY", p: currentPage) { response, error in
+        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", p: currentPage) { response, error in
             if let err = error {
                 print(err)
             } else {

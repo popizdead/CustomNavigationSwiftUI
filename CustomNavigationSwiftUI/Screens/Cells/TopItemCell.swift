@@ -16,16 +16,20 @@ struct TopItemsCell: View {
     var item: ArtObject
     
     var body: some View {
-        PushButton(dest: DetailsScreen(reviewArt: item), Label: {
-            VStack(alignment: .leading, spacing: 5, content: {
+        PushButton(dest: DetailsScreen().environmentObject(detailsModel), Label: {
+            VStack(alignment: .center, spacing: 5, content: {
                 if let imgUrl = item.webImage?.url {
-                    WebImage(url: URL(string: imgUrl))
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 150, alignment: .center)
+                    HStack {
+                        Spacer()
+                        WebImage(url: URL(string: imgUrl))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 150, alignment: .center)
+                        Spacer()
+                    }
                 }
                 
-                VStack(alignment: .leading, spacing: 5, content: {
+                VStack(alignment: .center, spacing: 5, content: {
                     Text(item.title)
                         .fontWeight(.semibold)
                         .lineLimit(2)
@@ -35,7 +39,10 @@ struct TopItemsCell: View {
                         .foregroundColor(.secondary)
                 })
             })
-        }, action: {})
+        }, action: {
+            guard let id = item.objectNumber else { return }
+            detailsModel.requestForObject(id)
+        })
         
         
         .onAppear() {
