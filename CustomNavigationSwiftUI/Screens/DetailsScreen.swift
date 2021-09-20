@@ -13,6 +13,11 @@ struct DetailsScreen : View {
     var reviewArt : ArtObject?
     
     var body: some View {
-        Text(reviewArt?.title ?? "no data")
+        VStack {
+            PopButton(dest: .previous, Label: {
+                Text("Back")
+            }, action: {})
+            Text(reviewArt?.title ?? "no data")
+        }
     }
 }

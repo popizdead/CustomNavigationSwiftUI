@@ -12,7 +12,9 @@ struct CustomNavigationSwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootNavigationController()
+            NavControllerView(transition: .custom(.present), content: {
+                MainListScreen()
+            })
         }
     }
 }

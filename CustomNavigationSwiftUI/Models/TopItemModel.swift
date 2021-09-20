@@ -16,6 +16,7 @@ class TopItemModel: ObservableObject {
     @Published var currentPage: Int = 0
     @Published var isPageLoading: Bool = false
     
+    
     init() {
         getRequst()
     }
@@ -64,6 +65,7 @@ class TopItemModel: ObservableObject {
     private func fetchItemsFromSource(_ source: ResponseSource) {
         guard let topSource = source.artObjects else { return }
         
+        print("there's \(topSource.count) items!!!")
         self.topItemsList = topSource
     }
 }

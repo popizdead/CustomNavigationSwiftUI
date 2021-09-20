@@ -1,8 +1,8 @@
 //
-//  PlacesModel.swift
+//  CategoriesModel.swift
 //  CustomNavigationSwiftUI
 //
-//  Created by Даниил Дорожкин on 18/09/2021.
+//  Created by Даниил Дорожкин on 20/09/2021.
 //
 
 import Networking

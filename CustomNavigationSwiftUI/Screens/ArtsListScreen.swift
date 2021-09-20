@@ -39,7 +39,7 @@ struct ArtObjectCell: View {
     var item: ArtObject
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5, content: {
+        HStack(alignment: .center, spacing: 5, content: {
             if let imgUrl = item.webImage?.url {
                 WebImage(url: URL(string: imgUrl))
                     .resizable()
