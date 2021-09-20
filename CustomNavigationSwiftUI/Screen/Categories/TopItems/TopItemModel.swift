@@ -47,6 +47,7 @@ class TopItemModel: ObservableObject {
     
     //MARK: -REQUESTS
     private func getRequst() {
+        isPageLoading = true
         MuseumAPI.getRequest(key: "s4QQN2YY", p: currentPage) { response, error in
             if let err = error {
                 print(err)
@@ -55,6 +56,7 @@ class TopItemModel: ObservableObject {
                 
                 self.fetchItemsFromSource(source)
                 self.currentPage += 1
+                self.isPageLoading = false
             }
         }
     }

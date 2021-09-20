@@ -23,6 +23,19 @@ struct FirstTopScreen: View {
     @ObservedObject var sourceModel : TopItemModel = .init()
     
     var body: some View {
+        if sourceModel.topItemsList.count == 0 {
+            VStack(alignment: .center) {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            }
+            Spacer()
+        } else {
+            itemsList
+        }
+    }
+    
+    //MARK:-VIEWS
+    var itemsList: some View {
         List {
             ForEach(sourceModel.topItemsList) { item in
                 TopItemCell(item: item)
