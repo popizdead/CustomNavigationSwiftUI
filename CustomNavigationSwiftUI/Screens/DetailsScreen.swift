@@ -15,22 +15,30 @@ struct DetailsScreen : View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                VStack {
+            if detailModel.reviewArt == nil {
+                Spacer()
+                Spacer()
+                VStack(alignment: .center) {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                }
+            } else {
+                ScrollView {
                     VStack {
-                        if let art = detailModel.reviewArt,
-                           let url = art.webImage?.url {
-                            
-                            ArtImageView(url: url)
-                                .padding()
-                            
-                            ArtDescription(art: art)
-                                .padding()
+                        VStack {
+                            if let art = detailModel.reviewArt,
+                               let url = art.webImage?.url {
+                                
+                                ArtImageView(url: url)
+                                    .padding()
+                                
+                                ArtDescription(art: art)
+                                    .padding()
+                            }
                         }
                     }
                 }
             }
-            
             
             Spacer()
             Spacer()
