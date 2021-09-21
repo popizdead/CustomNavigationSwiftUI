@@ -67,8 +67,8 @@ public struct PushButton<Label, Destination>: View where Label: View, Destinatio
     
     public var body: some View {
         label.onTapGesture {
-            viewModel.push(destination)
             action()
+            viewModel.push(destination)
         }
     }
 }

@@ -13,6 +13,8 @@ struct TopItemsCell: View {
     @EnvironmentObject var dataSourceModel: TopItemModel
     @ObservedObject var detailsModel : DetailModel = .init()
     
+    @State private var animate = false
+    
     var item: ArtObject
     
     var body: some View {
@@ -46,13 +48,16 @@ struct TopItemsCell: View {
             guard let id = item.objectNumber else { return }
             detailsModel.requestForObject(id)
         })
-        
-        
         .onAppear() {
             if self.dataSourceModel.topItemsList.isLast(item) {
                 dataSourceModel.requestNextTopPage()
             }
+            withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
+                self.animate = true
+            }
         }
+        .modifier(MyEffect(x: animate ? 0 : 500, y: animate ? 0 : 100))
+        
         
         if self.dataSourceModel.topItemsList.isLast(item) && dataSourceModel.isPageLoading {
             VStack(alignment: .center) {
@@ -61,5 +66,24 @@ struct TopItemsCell: View {
                     .progressViewStyle(CircularProgressViewStyle())
             }
         }
+    }
+}
+
+struct MyEffect: GeometryEffect {
+    var x: CGFloat = 0
+    var y: CGFloat = 0
+    
+    var animatableData: CGFloat {
+        get {
+            x
+        }
+        set {
+            x = newValue
+            y = newValue
+        }
+    }
+    
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        return ProjectionTransform(CGAffineTransform(translationX: x, y: y))
     }
 }

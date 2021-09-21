@@ -23,6 +23,8 @@ struct MainListScreen: View {
         UITableView.appearance().showsVerticalScrollIndicator = false
     }
     
+    let moonAnimation = Animation.easeInOut.speed(10)
+    
     var body: some View {
         if topItemsModel.topItemsList.count == 0 {
             VStack(alignment: .center) {
@@ -46,7 +48,7 @@ struct MainListScreen: View {
                         //Top items
                         ForEach(topItemsModel.topItemsList) { item in
                             TopItemsCell(item: item)
-                                .environmentObject(topItemsModel)
+                                .environmentObject(topItemsModel).animation(.linear)
                         }
                     }
                     else if segmentionChoise == 1 {
@@ -69,5 +71,6 @@ struct MainListScreen: View {
             
         }
     }
+    
 }
 
