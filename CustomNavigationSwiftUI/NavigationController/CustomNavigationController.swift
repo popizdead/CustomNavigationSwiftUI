@@ -137,7 +137,7 @@ final class NavControllerViewModel: ObservableObject {
     func push<S: View>(_ screenView: S) {
         navigationType = .push
         
-        withAnimation(easing) {
+        withAnimation(easing.delay(0.3)) {
             let screen = Screen(id: UUID().uuidString, nextScreen: AnyView(screenView))
             screenStack.push(screen)
         }
