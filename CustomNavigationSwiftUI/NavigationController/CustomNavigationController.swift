@@ -47,7 +47,9 @@ public struct NavControllerView<Content>: View where Content: View {
     
 }
 
-
+class AnimationModel: ObservableObject {
+    @Published var isAnimating = true
+}
 
 public struct PushButton<Label, Destination>: View where Label: View, Destination: View {
     
@@ -58,6 +60,9 @@ public struct PushButton<Label, Destination>: View where Label: View, Destinatio
     
     private let action: () -> Void
     
+    @EnvironmentObject var animateModel : AnimationModel
+    
+    
     init(dest: Destination, @ViewBuilder Label: @escaping () -> Label, action: @escaping () -> Void) {
         self.destination = dest
         self.label = Label()
@@ -67,14 +72,24 @@ public struct PushButton<Label, Destination>: View where Label: View, Destinatio
     
     public var body: some View {
         label.onTapGesture {
+            showAnimation()
             action()
+        }
+    }
+    
+    private func showAnimation() {
+        withAnimation(Animation.easeInOut(duration: 0.3)) {
+            animateModel.isAnimating = false
             viewModel.push(destination)
         }
+        
     }
     
     public func pushToScreen() {
         viewModel.push(destination)
     }
+    
+    
 }
 
 public struct PopButton<Label>: View where Label: View {

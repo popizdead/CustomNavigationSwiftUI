@@ -13,12 +13,12 @@ struct TopItemsCell: View {
     @EnvironmentObject var dataSourceModel: TopItemModel
     @ObservedObject var detailsModel : DetailModel = .init()
     
-    @State private var animate = true
+    @ObservedObject var animationModel : AnimationModel = .init()
     
     var item: ArtObject
     
     var body: some View {
-        PushButton(dest: DetailsScreen().environmentObject(detailsModel), Label: {
+        let buttonPush = PushButton(dest: DetailsScreen().environmentObject(detailsModel), Label: {
             VStack(alignment: .center, spacing: 5, content: {
                 if let imgUrl = item.webImage?.url {
                     //Image
@@ -47,19 +47,17 @@ struct TopItemsCell: View {
             //Get data of cell item
             guard let id = item.objectNumber else { return }
             detailsModel.requestForObject(id)
-            
-            withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
-                self.animate = false
+        }).environmentObject(animationModel)
+        
+        
+        buttonPush
+            .onAppear() {
+                if self.dataSourceModel.topItemsList.isLast(item) {
+                    dataSourceModel.requestNextTopPage()
+                }
+                
             }
-            
-        })
-        .onAppear() {
-            if self.dataSourceModel.topItemsList.isLast(item) {
-                dataSourceModel.requestNextTopPage()
-            }
-            
-        }
-        .modifier(MyEffect(x: animate ? 0 : 500, y: animate ? 0 : 100))
+            .modifier(MyEffect(x: animationModel.isAnimating ? 0 : 500, y: animationModel.isAnimating ? 0 : 100))
         
         
         if self.dataSourceModel.topItemsList.isLast(item) && dataSourceModel.isPageLoading {
