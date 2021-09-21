@@ -71,6 +71,10 @@ public struct PushButton<Label, Destination>: View where Label: View, Destinatio
             viewModel.push(destination)
         }
     }
+    
+    public func pushToScreen() {
+        viewModel.push(destination)
+    }
 }
 
 public struct PopButton<Label>: View where Label: View {

@@ -13,7 +13,7 @@ struct TopItemsCell: View {
     @EnvironmentObject var dataSourceModel: TopItemModel
     @ObservedObject var detailsModel : DetailModel = .init()
     
-    @State private var animate = false
+    @State private var animate = true
     
     var item: ArtObject
     
@@ -47,14 +47,17 @@ struct TopItemsCell: View {
             //Get data of cell item
             guard let id = item.objectNumber else { return }
             detailsModel.requestForObject(id)
+            
+            withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
+                self.animate = false
+            }
+            
         })
         .onAppear() {
             if self.dataSourceModel.topItemsList.isLast(item) {
                 dataSourceModel.requestNextTopPage()
             }
-            withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
-                self.animate = true
-            }
+            
         }
         .modifier(MyEffect(x: animate ? 0 : 500, y: animate ? 0 : 100))
         
