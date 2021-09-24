@@ -17,3 +17,23 @@ extension AnyTransition {
     }
     
 }
+
+
+struct TransitionEffect: GeometryEffect {
+    var x: CGFloat = 0
+    var y: CGFloat = 0
+    
+    var animatableData: CGFloat {
+        get {
+            x
+        }
+        set {
+            x = newValue
+            y = newValue
+        }
+    }
+    
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        return ProjectionTransform(CGAffineTransform(translationX: x, y: y))
+    }
+}

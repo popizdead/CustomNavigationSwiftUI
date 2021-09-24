@@ -23,8 +23,6 @@ struct MainListScreen: View {
         UITableView.appearance().showsVerticalScrollIndicator = false
     }
     
-    let moonAnimation = Animation.easeInOut.speed(10)
-    
     var body: some View {
         if topItemsModel.topItemsList.count == 0 {
             VStack(alignment: .center) {

@@ -10,6 +10,7 @@ import Networking
 
 struct CategoryCell: View {
     @EnvironmentObject var categoryModel: CategoriesModel
+    @State var isAnimated: Bool = false
     
     var category: Facet
     
@@ -21,11 +22,23 @@ struct CategoryCell: View {
                 Spacer()
             }
         }, action: {
-            guard let searchRequest = category.key.addingPercentEncoding(
-                withAllowedCharacters: .urlQueryAllowed
-            ) else { return }
-            
-            categoryModel.getSearchRequest(searchRequest)
+            showAnimation()
+            getCategoryItems()
         })
+        .modifier(TransitionEffect(x: isAnimated ? 500 : 0, y: isAnimated ? 100 : 0))
+    }
+    
+    private func showAnimation() {
+        withAnimation(Animation.easeInOut(duration: 0.3)) {
+            isAnimated = true
+        }
+    }
+    
+    private func getCategoryItems() {
+        guard let searchRequest = category.key.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ) else { return }
+        
+        categoryModel.getSearchRequest(searchRequest)
     }
 }
