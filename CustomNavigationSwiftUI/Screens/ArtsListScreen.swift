@@ -13,7 +13,6 @@ struct ArtsListScreen: View {
     
     @EnvironmentObject var sourceModel : CategoriesModel
     
-    
     var body: some View {
         VStack {
             VStack {

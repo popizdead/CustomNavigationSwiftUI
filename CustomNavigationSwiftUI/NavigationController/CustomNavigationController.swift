@@ -174,6 +174,10 @@ private struct ScreenStack {
     }
 }
 
+class SegmentionRouter: ObservableObject {
+    @Published var segmentionChoise = 0
+}
+
 //MARK:-SCREEN
 struct Screen: Equatable, Identifiable {
     

@@ -11,11 +11,11 @@ import SDWebImageSwiftUI
 
 struct MainListScreen: View {
     
+    @EnvironmentObject var segmentionRouter: SegmentionRouter
+    
     @ObservedObject var placesModel : CategoriesModel = .init(type: .places)
     @ObservedObject var authorsModel : CategoriesModel = .init(type: .authors)
     @ObservedObject var topItemsModel : TopItemModel = .init()
-    
-    @State var segmentionChoise = 0
     
     var screensTitle : [String] = ["Top", "Places", "Authors"]
     
@@ -24,39 +24,29 @@ struct MainListScreen: View {
     }
     
     var body: some View {
-        if topItemsModel.topItemsList.count == 0 {
-            VStack(alignment: .center) {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-            }
+        if isDataLoading() {
+            loadingView()
             Spacer()
         } else {
             VStack {
-                Picker("Options", selection: $segmentionChoise) {
-                    ForEach(0 ..< screensTitle.count) { index in
-                        Text(self.screensTitle[index])
-                            .tag(index)
-                    }
-                    
-                }.pickerStyle(SegmentedPickerStyle())
-                
+                segmentionController()
                 
                 List {
-                    if segmentionChoise == 0 {
+                    if segmentionRouter.segmentionChoise == 0 {
                         //Top items
                         ForEach(topItemsModel.topItemsList) { item in
                             TopItemsCell(item: item)
                                 .environmentObject(topItemsModel).animation(.linear)
                         }
                     }
-                    else if segmentionChoise == 1 {
+                    else if segmentionRouter.segmentionChoise == 1 {
                         //Places
                         ForEach(placesModel.categoriesList) { place in
                             CategoryCell(category: place)
                                 .environmentObject(placesModel)
                         }
                     }
-                    else if segmentionChoise == 2 {
+                    else if segmentionRouter.segmentionChoise == 2 {
                         //Authors
                         ForEach(authorsModel.categoriesList) { author in
                             CategoryCell(category: author)
@@ -70,5 +60,30 @@ struct MainListScreen: View {
         }
     }
     
+    private func segmentionController() -> some View {
+        Picker("Options", selection: $segmentionRouter.segmentionChoise) {
+            ForEach(0 ..< screensTitle.count) { index in
+                Text(self.screensTitle[index])
+                    .tag(index)
+            }
+            
+        }.pickerStyle(SegmentedPickerStyle())
+    }
+    
+    private func isDataLoading() -> Bool {
+        return
+            topItemsModel.topItemsList.count == 0
+        ||
+            authorsModel.categoriesList.count == 0
+        ||
+            placesModel.categoriesList.count == 0
+    }
+    
+    private func loadingView() -> some View {
+        VStack(alignment: .center) {
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+        }
+    }
 }
 

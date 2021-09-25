@@ -13,7 +13,7 @@ struct CustomNavigationSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             NavControllerView(transition: .custom(.present), content: {
-                MainListScreen()
+                MainListScreen().environmentObject(SegmentionRouter.init())
             })
         }
     }
