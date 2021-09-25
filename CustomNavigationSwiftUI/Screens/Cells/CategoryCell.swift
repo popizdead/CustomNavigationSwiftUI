@@ -10,14 +10,18 @@ import Networking
 
 struct CategoryCell: View {
     @EnvironmentObject var categoryModel: CategoriesModel
+    @EnvironmentObject var segmentionRouter: SegmentionRouter
+    
     @State var isAnimated: Bool = false
     
     var category: Facet
     
     var body: some View {
-        PushButton(dest: ArtsListScreen().environmentObject(categoryModel), Label: {
-            Text(category.key)  
+        PushButton(dest: ArtsListScreen().environmentObject(categoryModel).environmentObject(segmentionRouter), Label: {
+            Text(category.key)
         }, action: {
+            segmentionRouter.lastItemAppeared = category.id
+            
             showAnimation()
             getCategoryItems()
         })

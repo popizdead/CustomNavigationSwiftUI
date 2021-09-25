@@ -12,8 +12,9 @@ import SDWebImageSwiftUI
 //MARK:-TOP ART CELL
 struct TopItemsCell: View {
     @EnvironmentObject var dataSourceModel: TopItemModel
-    @ObservedObject var detailsModel : DetailModel = .init()
+    @EnvironmentObject var segmentionRouter: SegmentionRouter
     
+    @ObservedObject var detailsModel : DetailModel = .init()
     @State var isAnimated: Bool = false
     
     var item: ArtObject
@@ -29,6 +30,8 @@ struct TopItemsCell: View {
             })
             .padding()
         }, action: {
+            segmentionRouter.lastItemAppeared = item.id
+            
             showAnimation()
             getItemData()
         })
@@ -100,6 +103,7 @@ struct TopItemsCell: View {
 struct ArtObjectCell: View {
     @EnvironmentObject var sourceModel: CategoriesModel
     @ObservedObject var detailsModel : DetailModel = .init()
+    @EnvironmentObject var segmentionRouter: SegmentionRouter
     
     @State var isAnimated: Bool = false
     
@@ -132,6 +136,8 @@ struct ArtObjectCell: View {
             })
             .padding()
         }, action: {
+            segmentionRouter.lastSearchArtAppeared = item.id
+            
             showAnimation()
             getItemData()
         })

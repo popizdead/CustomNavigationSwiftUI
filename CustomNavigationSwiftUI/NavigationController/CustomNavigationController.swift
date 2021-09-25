@@ -176,6 +176,8 @@ private struct ScreenStack {
 
 class SegmentionRouter: ObservableObject {
     @Published var segmentionChoise = 0
+    @Published var lastItemAppeared = "lastItem"
+    @Published var lastSearchArtAppeared = "last appeared"
 }
 
 //MARK:-SCREEN

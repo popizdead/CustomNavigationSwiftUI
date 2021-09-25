@@ -12,6 +12,7 @@ import Networking
 struct ArtsListScreen: View {
     
     @EnvironmentObject var sourceModel : CategoriesModel
+    @EnvironmentObject var segmentionRouter: SegmentionRouter
     
     var body: some View {
         VStack {
@@ -22,9 +23,19 @@ struct ArtsListScreen: View {
                         .font(.headline)
                     Spacer()
                 }
-                List {
-                    ForEach(sourceModel.artObjectsList) { item in
-                        ArtObjectCell(item: item)
+                if sourceModel.artObjectsList.count == 0 {
+                    Text("No data")
+                        .font(.caption2)
+                } else {
+                    ScrollViewReader { proxy in
+                        List {
+                            ForEach(sourceModel.artObjectsList) { item in
+                                ArtObjectCell(item: item)
+                            }
+                        }
+                        .onAppear() {
+                            proxy.scrollTo(segmentionRouter.lastSearchArtAppeared)
+                        }
                     }
                 }
             }

@@ -30,7 +30,7 @@ struct MainListScreen: View {
         } else {
             VStack {
                 segmentionController()
-                
+                ScrollViewReader { proxy in
                     List {
                         if segmentionRouter.segmentionChoise == 0 {
                             //Top items
@@ -54,6 +54,10 @@ struct MainListScreen: View {
                             }
                         }
                     }
+                    .onAppear() {
+                        proxy.scrollTo(segmentionRouter.lastItemAppeared)
+                    }
+                }
                 }
             }
         }
