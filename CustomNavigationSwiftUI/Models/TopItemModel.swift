@@ -22,7 +22,6 @@ class TopItemModel: ObservableObject {
     }
     
     //MARK:-PAGING
-    //Next page
     func requestNextTopPage() {
         guard isPageLoading == false else { return }
         
@@ -66,7 +65,6 @@ class TopItemModel: ObservableObject {
     private func fetchItemsFromSource(_ source: ResponseSource) {
         guard let topSource = source.artObjects else { return }
         
-        print("there's \(topSource.count) items!!!")
         self.topItemsList = topSource
     }
 }

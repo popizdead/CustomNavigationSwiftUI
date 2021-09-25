@@ -16,11 +16,7 @@ struct CategoryCell: View {
     
     var body: some View {
         PushButton(dest: ArtsListScreen().environmentObject(categoryModel), Label: {
-            HStack {
-                Spacer()
-                Text(category.key)
-                Spacer()
-            }
+            Text(category.key)  
         }, action: {
             showAnimation()
             getCategoryItems()
@@ -35,10 +31,7 @@ struct CategoryCell: View {
     }
     
     private func getCategoryItems() {
-        guard let searchRequest = category.key.addingPercentEncoding(
-            withAllowedCharacters: .urlQueryAllowed
-        ) else { return }
-        
-        categoryModel.getSearchRequest(searchRequest)
+        categoryModel.currentSearch = category.key
+        categoryModel.getSearchRequest()
     }
 }

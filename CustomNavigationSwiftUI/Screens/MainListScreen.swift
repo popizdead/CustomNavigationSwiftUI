@@ -31,34 +31,32 @@ struct MainListScreen: View {
             VStack {
                 segmentionController()
                 
-                List {
-                    if segmentionRouter.segmentionChoise == 0 {
-                        //Top items
-                        ForEach(topItemsModel.topItemsList) { item in
-                            TopItemsCell(item: item)
-                                .environmentObject(topItemsModel)
+                    List {
+                        if segmentionRouter.segmentionChoise == 0 {
+                            //Top items
+                            ForEach(topItemsModel.topItemsList) { item in
+                                TopItemsCell(item: item)
+                                    .environmentObject(topItemsModel)
+                            }
                         }
-                    }
-                    else if segmentionRouter.segmentionChoise == 1 {
-                        //Places
-                        ForEach(placesModel.categoriesList) { place in
-                            CategoryCell(category: place)
-                                .environmentObject(placesModel)
+                        else if segmentionRouter.segmentionChoise == 1 {
+                            //Places
+                            ForEach(placesModel.categoriesList) { place in
+                                CategoryCell(category: place)
+                                    .environmentObject(placesModel)
+                            }
                         }
-                    }
-                    else if segmentionRouter.segmentionChoise == 2 {
-                        //Authors
-                        ForEach(authorsModel.categoriesList) { author in
-                            CategoryCell(category: author)
-                                .environmentObject(authorsModel)
+                        else if segmentionRouter.segmentionChoise == 2 {
+                            //Authors
+                            ForEach(authorsModel.categoriesList) { author in
+                                CategoryCell(category: author)
+                                    .environmentObject(authorsModel)
+                            }
                         }
                     }
                 }
-                
             }
-            
         }
-    }
     
     private func segmentionController() -> some View {
         Picker("Options", selection: $segmentionRouter.segmentionChoise) {

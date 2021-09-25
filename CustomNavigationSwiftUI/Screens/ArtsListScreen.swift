@@ -16,13 +16,16 @@ struct ArtsListScreen: View {
     var body: some View {
         VStack {
             VStack {
+                HStack {
+                    Spacer()
+                    Text(sourceModel.currentSearch)
+                        .font(.headline)
+                    Spacer()
+                }
                 List {
                     ForEach(sourceModel.artObjectsList) { item in
                         ArtObjectCell(item: item)
                     }
-                }
-                .onAppear {
-                    print("Appearing fucking screen")
                 }
             }
             
@@ -32,6 +35,7 @@ struct ArtsListScreen: View {
             
             PopButton(dest: .previous, Label: {
                 Text("Close")
+                    .font(.headline)
             }, action: {
                 sourceModel.artObjectsList.removeAll()
             })

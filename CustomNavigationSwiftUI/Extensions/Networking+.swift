@@ -18,3 +18,8 @@ extension ArtObject: Identifiable {
     public var id: String { self.title }
     
 }
+
+enum CategoryType {
+    case places
+    case authors
+}

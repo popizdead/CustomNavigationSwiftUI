@@ -48,8 +48,6 @@ struct DetailsScreen : View {
                 Text("Close")
             }, action: {})
         }
-        
-        
     }
 }
 

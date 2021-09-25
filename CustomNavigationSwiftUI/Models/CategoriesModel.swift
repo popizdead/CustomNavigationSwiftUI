@@ -11,19 +11,14 @@ import SwiftUI
 //MARK:-SOURCE
 class CategoriesModel: ObservableObject {
     
-    enum CategoryType {
-        case places
-        case authors
-    }
-    
     //Category source
     @Published var categoriesList: [Facet] = .init()
     @Published var artObjectsList: [ArtObject] = .init()
     
-    @Published var currentPage: Int = 0
+    @Published var currentPage: Int = 1
     @Published var isPageLoading: Bool = false
     
-    @Published var currentSearch: String = ""
+    @Published var currentSearch = String()
     
     init(type: CategoryType) {
         getAllCategoriesOf(type)
@@ -56,12 +51,13 @@ class CategoriesModel: ObservableObject {
     }
     
     //MARK:-SEARCH
-    //Search
-    func getSearchRequest(_ s: String) {
-        self.currentSearch = s
+    func getSearchRequest() {
+        guard let searchRequest = self.currentSearch.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ) else { return }
         self.isPageLoading = true
         
-        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", q: currentSearch, p: 0, apiResponseQueue: .main) { response, error in
+        MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", q: searchRequest, p: currentPage, apiResponseQueue: .main) { response, error in
             if let err = error {
                 print(err)
             } else {
@@ -81,12 +77,10 @@ class CategoriesModel: ObservableObject {
     }
     
     //MARK:-PAGING
-    //Next page
     func requestNextPage() {
         guard isPageLoading == false else { return }
-        
-        currentPage += 1
         isPageLoading = true
+        self.currentPage += 1
         
         MuseumAPI.getRequest(objectNumber: "", key: "s4QQN2YY", q: currentSearch,  p: currentPage) { response, error in
             if let err = error {
@@ -94,15 +88,17 @@ class CategoriesModel: ObservableObject {
             } else {
                 guard let source = response else { return }
                 
-                self.appendTopItemsToSource(reponse: source)
+                self.appendItemsToSource(reponse: source)
             }
         }
     }
     
-    private func appendTopItemsToSource(reponse: ResponseSource) {
+    private func appendItemsToSource(reponse: ResponseSource) {
         guard let topSource = reponse.artObjects else { return }
-         
-        self.artObjectsList.append(contentsOf: topSource)
+        
+        artObjectsList.append(contentsOf: topSource)
+        artObjectsList = artObjectsList.uniqued()
+        
         isPageLoading = false
     }
     
