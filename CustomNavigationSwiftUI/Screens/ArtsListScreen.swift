@@ -25,7 +25,7 @@ struct ArtsListScreen: View {
                 }
                 if sourceModel.artObjectsList.count == 0 {
                     Text("No data")
-                        .font(.caption2)
+                        .font(.system(size: 30))
                 } else {
                     ScrollViewReader { proxy in
                         List {
