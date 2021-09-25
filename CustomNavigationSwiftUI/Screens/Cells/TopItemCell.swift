@@ -9,6 +9,7 @@ import SwiftUI
 import Networking
 import SDWebImageSwiftUI
 
+//MARK:-TOP ART CELL
 struct TopItemsCell: View {
     @EnvironmentObject var dataSourceModel: TopItemModel
     @ObservedObject var detailsModel : DetailModel = .init()
@@ -51,7 +52,7 @@ struct TopItemsCell: View {
         }
     }
     
-    //MARK:-ITEM INFO
+    //ITEM INFO
     private func getItemData() {
         guard let id = item.objectNumber else { return }
         detailsModel.requestForObject(id)
@@ -80,7 +81,7 @@ struct TopItemsCell: View {
     }
     
     
-    //MARK:-PAGING
+    //PAGING
     private func isLastItem() -> Bool {
         return self.dataSourceModel.topItemsList.isLast(item) && dataSourceModel.isPageLoading
     }
@@ -90,6 +91,78 @@ struct TopItemsCell: View {
             Divider()
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
+        }
+    }
+}
+
+//MARK:-ART LIST CELL
+
+struct ArtObjectCell: View {
+    @EnvironmentObject var sourceModel: CategoriesModel
+    @ObservedObject var detailsModel : DetailModel = .init()
+    
+    @State var isAnimated: Bool = false
+    
+    var item: ArtObject
+    
+    var body: some View {
+        PushButton(dest: DetailsScreen().environmentObject(detailsModel), Label: {
+            VStack(alignment: .center, spacing: 5, content: {
+                if let imgUrl = item.webImage?.url {
+                    //Image
+                    HStack {
+                        Spacer()
+                        WebImage(url: URL(string: imgUrl))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 150, alignment: .center)
+                        Spacer()
+                    }
+                }
+                
+                VStack(alignment: .center, spacing: 5, content: {
+                    //Item description
+                    Text(item.title)
+                        .fontWeight(.semibold)
+                        .minimumScaleFactor(0.5)
+                    Text(item.principalOrFirstMaker)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                })
+            })
+            .padding()
+        }, action: {
+            showAnimation()
+            getItemData()
+        })
+        .onAppear() {
+            checkForNextPage()
+        }
+        .modifier(TransitionEffect(x: isAnimated ? 500 : 0, y: isAnimated ? 100 : 0))
+        
+        if self.sourceModel.artObjectsList.isLast(item) && sourceModel.isPageLoading {
+            VStack(alignment: .center) {
+                Divider()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            }
+        }
+    }
+    
+    private func showAnimation() {
+        withAnimation(Animation.easeInOut(duration: 0.3)) {
+            isAnimated = true
+        }
+    }
+    
+    private func getItemData() {
+        guard let id = item.objectNumber else { return }
+        detailsModel.requestForObject(id)
+    }
+    
+    private func checkForNextPage() {
+        if self.sourceModel.artObjectsList.isLast(item) {
+            sourceModel.requestNextPage()
         }
     }
 }

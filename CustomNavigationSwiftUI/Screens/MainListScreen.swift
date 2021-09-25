@@ -36,7 +36,7 @@ struct MainListScreen: View {
                         //Top items
                         ForEach(topItemsModel.topItemsList) { item in
                             TopItemsCell(item: item)
-                                .environmentObject(topItemsModel).animation(.linear)
+                                .environmentObject(topItemsModel)
                         }
                     }
                     else if segmentionRouter.segmentionChoise == 1 {
